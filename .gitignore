@@ -1,0 +1,17 @@
+# Ambiente virtual
+venv/
+.env
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Banco de dados local
+banco.db
+
+# Alembic cache
+alembic/versions/__pycache__/
+
+# IDE
+.vscode/
+.idea/
