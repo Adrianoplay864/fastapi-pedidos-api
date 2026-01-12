@@ -1,7 +1,9 @@
 🍕 API de Pedidos com FastAPI
 
-API backend desenvolvida em FastAPI para gerenciamento de usuários e pedidos, simulando o funcionamento de um sistema de pedidos (ex: pizzaria).
-O projeto inclui autenticação, criptografia de senha, persistência em banco de dados e organização em camadas.
+API backend desenvolvida em FastAPI, simulando um sistema real de pedidos (ex: pizzaria).
+O projeto contempla autenticação de usuários, criptografia de senhas, persistência em banco de dados, migrations, containerização com Docker e boas práticas de backend.
+
+Projeto desenvolvido com foco em portfólio profissional e preparação para vagas Backend Júnior (Python).
 
 🚀 Tecnologias Utilizadas
 
@@ -17,13 +19,15 @@ Pydantic
 
 Alembic
 
-Passlib (bcrypt)
+Passlib + bcrypt
 
-JWT (simples)
+JWT (implementação simples)
 
 Uvicorn
 
 Python-dotenv
+
+Docker
 
 📁 Estrutura do Projeto
 ├── main.py                # Inicialização da aplicação
@@ -35,12 +39,14 @@ Python-dotenv
 ├── banco.db               # Banco SQLite
 ├── alembic.ini            # Configuração do Alembic
 ├── env.py                 # Configuração das migrations
+├── Dockerfile             # Containerização da aplicação
+├── requirements.txt       # Dependências com versões fixadas
 └── README.md
 
 🔐 Funcionalidades
 👤 Usuários
 
-Criar usuário
+Criação de usuários
 
 Criptografia de senha com bcrypt
 
@@ -50,7 +56,7 @@ Geração de token de acesso
 
 📦 Pedidos
 
-Criar pedidos vinculados a usuários
+Criação de pedidos vinculados a usuários
 
 Status inicial automático (PENDENTE)
 
@@ -58,23 +64,29 @@ Persistência no banco de dados
 
 🔑 Autenticação
 
-Senhas criptografadas usando Passlib + bcrypt
+Senhas armazenadas de forma segura com Passlib + bcrypt
 
-Validação de login por email e senha
+Validação por email e senha
 
-Geração de token simples para autenticação
+Retorno de token de autenticação (modelo inicial)
 
 🗄️ Banco de Dados
 
-SQLite
+Banco de dados SQLite
 
 ORM com SQLAlchemy
 
-Migrations gerenciadas com Alembic
+Controle de versão do banco com Alembic (migrations)
 
-⚙️ Como Executar o Projeto
+⚠️ Observação sobre Compatibilidade
+
+As versões das bibliotecas passlib e bcrypt foram fixadas propositalmente no requirements.txt para evitar problemas conhecidos de incompatibilidade entre essas dependências.
+
+Isso garante estabilidade tanto em ambiente local quanto em Docker.
+
+⚙️ Como Executar o Projeto (Local)
 1️⃣ Clone o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Adrianoplay864/fastapi-pedidos-api.git
 
 2️⃣ Crie e ative o ambiente virtual
 python -m venv venv
@@ -82,10 +94,18 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 
 3️⃣ Instale as dependências
-pip install fastapi uvicorn sqlalchemy passlib[bcrypt] python-dotenv python-jose[cryptography]
+pip install -r requirements.txt
 
 4️⃣ Execute a aplicação
 uvicorn main:app --reload
+
+🐳 Como Executar com Docker
+docker build -t fastapi-pedidos-api .
+docker run -p 8000:8000 fastapi-pedidos-api
+
+
+Acesse:
+👉 http://localhost:8000/docs
 
 📌 Rotas Principais
 🔐 Autenticação
@@ -97,8 +117,6 @@ Método	Rota	Descrição
 POST	/order/pedido	Criar novo pedido
 📖 Documentação Automática
 
-Após iniciar o servidor, acesse:
-
 Swagger UI:
 👉 http://127.0.0.1:8000/docs
 
@@ -107,17 +125,19 @@ ReDoc:
 
 🎯 Objetivo do Projeto
 
-Projeto desenvolvido com foco em:
+Este projeto demonstra conhecimento prático em:
 
-Prática de backend com FastAPI
+Desenvolvimento de APIs REST com FastAPI
+
+Autenticação e segurança de senhas
+
+Uso de ORM e migrations
 
 Organização de código em camadas
 
-Autenticação e segurança básica
+Containerização com Docker
 
-Uso profissional de ORM e migrations
-
-Preparação para vagas Backend Júnior
+Boas práticas para projetos backend profissionais
 
 👨‍💻 Autor
 
