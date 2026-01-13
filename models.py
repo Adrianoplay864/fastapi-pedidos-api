@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine,Column ,Integer, String, Float, Boolean, ForeignKey
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 db = create_engine("sqlite:///banco.db")
 
@@ -30,11 +30,15 @@ class Pedido(Base):
     status = Column("status", String)
     usuario = Column("usuario", ForeignKey("usuarios.id"))
     preco = Column("preco", Float)
+    itens = relationship("ItemPedido", cascade="all, delete")
 
     def __init__(self,usuario, preco=0, status="PENDENTE"):
         self.status = status
         self.usuario = usuario
         self.preco = preco
+
+    def calcular_preco(self):
+        self.preco = sum(item.preco_unitario * item.quantidade for item in self.itens)
 
 
 # Tabela de Itens do Pedido
